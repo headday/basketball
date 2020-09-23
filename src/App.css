@@ -5,3 +5,7 @@
 li{
   list-style-type: none;
 }
+.team_elem{
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,54 +1,54 @@
 import React,{useState,useEffect} from 'react'
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
-import { Card, Button, CardTitle, CardText,} from 'reactstrap';
-import getData from '../service/service'
+import {getData,getStats} from '../service/service'
+import TeamsPage from './Teams'
+import PlayersPage from './Players'
+import TournamentsPage from './Tournaments'
 import logo from '../images/logo.svg'
 import '../App.css'
 
 const Home = () => {
-    const [activeBtn, setactiveBtn] = useState(0)
     const [teams, setteams] = useState([])
+
 
     const showTeams = async () =>{
         const res = await getData('https://www.balldontlie.io/api/v1/teams')
-        setteams(await res.data)
-     
+        setteams(await res.data.slice(0,5))
     }
-     
-            const teamItems = teams.map((elem,index) => {
-                return (
-                    <li key={elem.id}>
-                        <Card body>
-                        <CardTitle>{elem.name}</CardTitle>
-                        <CardText>{elem.full_name}</CardText>
-                                           
-                        </Card> 
-                    </li>
-                )
-            })     
-        
+    const deletePlayer = (id) =>{
+        const teamId = teams.findIndex(item => item.id === id);
+        const arr = [...teams.slice(0,teamId),...teams.slice(teamId+1)]
+
+        setteams(arr)
+    }
+
   return (
-    <Container>
+   <Router>
+        <Container>
         <Row>
             <Col md={{size: 3 , offset:1}}>
                 <img className="logo" src={logo} alt="logo"/>
             </Col>
             <Col md={{size: 6, offset: 2}}>
-                <button color="primary" onClick={showTeams} className='btn nav_item'>Teams</button>
-                <button color="primary" onClick={()=> console.log(teams[0])}   className='btn nav_item'>Players</button>
-                <button color="primary" className='btn nav_item'>Tournaments</button>
+                <Link to='/teams'><button color="primary" onClick={showTeams} className='btn nav_item'>Teams</button></Link>
+                <Link to='/players'><button color="primary"  className='btn nav_item'>Players</button></Link>
+                <Link to='/tournaments' ><button color="primary"  className='btn nav_item'>Tournaments</button></Link>
             </Col>
         </Row>
-        <Row>
-            <Col md={{size:3}}>
-                
-                    {teamItems}
-                    
-                
-            
-            </Col>
-        </Row>
+        <Switch>
+            <Route path='/teams'>
+                <TeamsPage  deletePlayer={deletePlayer} teams={teams}/>
+            </Route>
+            <Route path='/players'>
+                <PlayersPage  deletePlayer={deletePlayer} teams={teams}/>
+            </Route>
+            <Route path='/tournaments'>
+                <TournamentsPage  deletePlayer={deletePlayer} teams={teams}/>
+            </Route>
+        </Switch>
     </Container>
+   </Router>
   )
 }
 
