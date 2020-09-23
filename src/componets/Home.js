@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import {getData,getStats} from '../service/service'
@@ -10,7 +10,6 @@ import '../App.css'
 
 const Home = () => {
     const [teams, setteams] = useState([])
-
 
     const showTeams = async () =>{
         const res = await getData('https://www.balldontlie.io/api/v1/teams')
@@ -34,7 +33,7 @@ const Home = () => {
                 <Link to='/teams'><button color="primary" onClick={showTeams} className='btn nav_item'>Teams</button></Link>
                 <Link to='/players'><button color="primary"  className='btn nav_item'>Players</button></Link>
                 <Link to='/tournaments' ><button color="primary"  className='btn nav_item'>Tournaments</button></Link>
-            </Col>
+            </Col>   
         </Row>
         <Switch>
             <Route path='/teams'>
