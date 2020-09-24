@@ -10,6 +10,8 @@ import '../App.css'
 
 const Home = () => {
     const [teams, setteams] = useState([])
+    const [trackedPlayer, settrackedPlayer] = useState([0])
+    const [countPlayers, setcountPlayers] = useState(0)
 
     const showTeams = async () =>{
         const res = await getData('https://www.balldontlie.io/api/v1/teams')
@@ -40,7 +42,13 @@ const Home = () => {
                 <TeamsPage  deletePlayer={deletePlayer} teams={teams}/>
             </Route>
             <Route path='/players'>
-                <PlayersPage  deletePlayer={deletePlayer} teams={teams}/>
+                <PlayersPage 
+                settrackedPlayer={settrackedPlayer} 
+                trackedPlayer={trackedPlayer} 
+                deletePlayer={deletePlayer}
+                countPlayers={countPlayers}
+                setcountPlayers={setcountPlayers}
+                teams={teams}/>
             </Route>
             <Route path='/tournaments'>
                 <TournamentsPage  deletePlayer={deletePlayer} teams={teams}/>
