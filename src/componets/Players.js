@@ -1,25 +1,24 @@
 import React,{useState,useEffect} from 'react'
 import {getData,getStats} from '../service/service'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
-import Spinner from '../images/spinner.gif' 
 
 const PlayersPage = (props) => {
   const [players, setplayers] = useState([])
 
 
   const {settrackedPlayer,trackedPlayer,setcountPlayers,countPlayers} = props
-
+  const onUnTracked =(id)=>{
+    let res = trackedPlayer.findIndex((itemId=> itemId === id))
+    if(res !== -1){
+      setcountPlayers(countPlayers - 1);
+      settrackedPlayer([...trackedPlayer.slice(0,res),...trackedPlayer.slice(res+1)])
+    }
+  }
   const onTracked = (id) =>{
-   // let res = trackedPlayer.findIndex((itemId => itemId === id))
     if(trackedPlayer.findIndex((itemId => itemId === id)) === -1){
-      console.log(' not find')
       setcountPlayers(countPlayers + 1);
       settrackedPlayer([...trackedPlayer,id])
-    } 
-
-    console.log([...trackedPlayer,id])
-    //console.log(res + 'res')
-  
+    }
   }
   useEffect(()=>{
     const fetchAPI = async () => {
@@ -37,7 +36,10 @@ const PlayersPage = (props) => {
           <CardText>Position: {elem.position}</CardText>
           <CardText>City:{elem.team.city} </CardText>
           <CardText>Division: {elem.team.division} </CardText>
-          <Button onClick={()=>onTracked(elem.id)}>Track player</Button>
+          { trackedPlayer.findIndex((elemId) => elemId === elem.id) === -1
+           ? <Button color="primary" onClick={()=>onTracked(elem.id)}>Track player</Button>
+           :  <Button onClick={()=> onUnTracked(elem.id)}>Tracked</Button>
+          }
         </CardBody>
      
       </Card>
