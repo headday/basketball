@@ -1,5 +1,7 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import {getData,getStats} from '../service/service'
+import PlayersDetails from './PlayersDetails'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
 
 const PlayersPage = (props) => {
@@ -48,14 +50,28 @@ const PlayersPage = (props) => {
 
   return (
     <>
+      <Router>
       <Container>
-        <Row>Tracked players {countPlayers}</Row>
+        <Row>
+        <Col md={{size:3,offset:9}}>
+        <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+        <CardTitle>Your tracked players</CardTitle>
+        <CardText>{countPlayers}</CardText>
+        <Link to="/tracked-players-list"><Button>Show list</Button></Link>
+      </Card>
+        </Col>
+        </Row>
+       
         <Row>
           <Col className="players_list">
             {playersList}
           </Col>
         </Row>
+        <Route path="/tracked-players-list">
+           <PlayersPage trackedPlayer={trackedPlayer}/>
+        </Route>
       </Container>
+      </Router>
       
     </>
   )

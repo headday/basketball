@@ -7,8 +7,8 @@ const getData = async (url) =>{
     
     return await res.json();
 }
-const getStats = async () =>{
-    const res = await (fetch(`https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=1&player_ids[]=2`))
+const getStats = async (url) =>{
+    const res = await (fetch(url))
     if(!res.ok){
         alert('fetch error')
     }
