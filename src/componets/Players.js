@@ -6,6 +6,8 @@ import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, 
 
 const PlayersPage = (props) => {
   const [players, setplayers] = useState([])
+  const [activePage, setactivePage] = useState(true);
+  const [trackedplayersList, settrakedplayersList] = useState([]);
 
 
   const {settrackedPlayer,trackedPlayer,setcountPlayers,countPlayers} = props
@@ -22,6 +24,15 @@ const PlayersPage = (props) => {
       settrackedPlayer([...trackedPlayer,id])
     }
   }
+
+  const getPlayers = () =>{
+         
+    trackedPlayer.forEach(async element => {
+        let stat =  await getStats(`https://www.balldontlie.io/api/v1/players/${element}`);
+        settrakedplayersList([...trackedplayersList,stat]);
+    });
+    console.log('well done func')
+}
   useEffect(()=>{
     const fetchAPI = async () => {
       const res = await getData('https://www.balldontlie.io/api/v1/players')
@@ -54,22 +65,27 @@ const PlayersPage = (props) => {
       <Container>
         <Row>
         <Col md={{size:3,offset:9}}>
-        <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-        <CardTitle>Your tracked players</CardTitle>
-        <CardText>{countPlayers}</CardText>
-        <Link to="/tracked-players-list"><Button>Show list</Button></Link>
-      </Card>
+          <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+            <CardTitle>Your tracked players</CardTitle>
+            <CardText>{countPlayers}</CardText>
+            <Link to="/tracked-players-list"><Button onClick={()=>{setactivePage(false); getPlayers()}}>Show list</Button></Link>
+          </Card>
         </Col>
         </Row>
-       
+
         <Row>
           <Col className="players_list">
-            {playersList}
+              { activePage === true ? playersList
+              :
+                <Route path="/tracked-players-list">
+                  <PlayersDetails trackedPlayer={trackedPlayer} trackedplayersList={trackedplayersList}/>
+                </Route>
+              
+            }
+
           </Col>
         </Row>
-        <Route path="/tracked-players-list">
-           <PlayersPage trackedPlayer={trackedPlayer}/>
-        </Route>
+       
       </Container>
       </Router>
       

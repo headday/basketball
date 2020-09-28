@@ -10,7 +10,7 @@ import '../App.css'
 
 const Home = () => {
     const [teams, setteams] = useState([])
-    const [trackedPlayer, settrackedPlayer] = useState([0])
+    const [trackedPlayer, settrackedPlayer] = useState([])
     const [countPlayers, setcountPlayers] = useState(0)
 
     const showTeams = async () =>{
