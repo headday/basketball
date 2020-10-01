@@ -4,7 +4,7 @@ import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, 
 import {PlayersPage} from './Players'
 
 const PlayersDetails = (props) => {
-    const {trackedPlayer} = props;
+    const {trackedPlayer,setactivePage} = props;
     const history = useHistory();
 
      useEffect(()=>{
@@ -45,7 +45,7 @@ const PlayersDetails = (props) => {
             {list}
 
         
-           <Button onClick={()=>{history.push('/players')}}>Back</Button>
+           <Button onClick={()=>{history.push('/players'); setactivePage(true)}}>Back</Button>
         
         </Router>
       

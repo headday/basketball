@@ -74,7 +74,7 @@ const PlayersPage = (props) => {
               { activePage === true ? playersList
               :
                 <Route path="/players/tracked-players-list">
-                  <PlayersDetails trackedPlayer={trackedPlayer}/>
+                  <PlayersDetails setactivePage={setactivePage} trackedPlayer={trackedPlayer}/>
                 </Route>
               
             }
