@@ -41,7 +41,7 @@ const Home = () => {
             <Route path='/teams'>
                 <TeamsPage  deletePlayer={deletePlayer} teams={teams}/>
             </Route>
-            <Route path='/players'>
+            <Route exact path='/players'> 
                 <PlayersPage 
                 settrackedPlayer={settrackedPlayer} 
                 trackedPlayer={trackedPlayer} 

@@ -1,38 +1,34 @@
 import React,{useState,useEffect} from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import {getData,getStats} from '../service/service'
+import {getData} from '../service/service'
 import PlayersDetails from './PlayersDetails'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
 
 const PlayersPage = (props) => {
   const [players, setplayers] = useState([])
   const [activePage, setactivePage] = useState(true);
-  const [trackedplayersList, settrakedplayersList] = useState([]);
+  
 
 
   const {settrackedPlayer,trackedPlayer,setcountPlayers,countPlayers} = props
-  const onUnTracked =(id)=>{
-    let res = trackedPlayer.findIndex((itemId=> itemId === id))
+  const onUnTracked =(elem)=>{
+    let res = trackedPlayer.findIndex((player=> player.id === elem.id))
     if(res !== -1){
+      console.log('detected')
       setcountPlayers(countPlayers - 1);
       settrackedPlayer([...trackedPlayer.slice(0,res),...trackedPlayer.slice(res+1)])
     }
   }
-  const onTracked = (id) =>{
-    if(trackedPlayer.findIndex((itemId => itemId === id)) === -1){
+  const onTracked = (elem) =>{
+
+    if(trackedPlayer.findIndex((player => player.id === elem.id)) === -1){
+      console.log('add');
       setcountPlayers(countPlayers + 1);
-      settrackedPlayer([...trackedPlayer,id])
+      settrackedPlayer([...trackedPlayer,elem])
     }
   }
 
-  const getPlayers = () =>{
-         
-    trackedPlayer.forEach(async element => {
-        let stat =  await getStats(`https://www.balldontlie.io/api/v1/players/${element}`);
-        settrakedplayersList([...trackedplayersList,stat]);
-    });
-    console.log('well done func')
-}
+
   useEffect(()=>{
     const fetchAPI = async () => {
       const res = await getData('https://www.balldontlie.io/api/v1/players')
@@ -49,9 +45,9 @@ const PlayersPage = (props) => {
           <CardText>Position: {elem.position}</CardText>
           <CardText>City:{elem.team.city} </CardText>
           <CardText>Division: {elem.team.division} </CardText>
-          { trackedPlayer.findIndex((elemId) => elemId === elem.id) === -1
-           ? <Button color="primary" onClick={()=>onTracked(elem.id)}>Track player</Button>
-           :  <Button onClick={()=> onUnTracked(elem.id)}>Tracked</Button>
+          { trackedPlayer.findIndex((player) => player.id === elem.id) === -1
+           ? <Button color="primary" onClick={()=>onTracked(elem)}>Track player</Button>
+           :  <Button onClick={()=> onUnTracked(elem)}>Tracked</Button>
           }
         </CardBody>
      
@@ -68,7 +64,7 @@ const PlayersPage = (props) => {
           <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
             <CardTitle>Your tracked players</CardTitle>
             <CardText>{countPlayers}</CardText>
-            <Link to="/tracked-players-list"><Button onClick={()=>{setactivePage(false); getPlayers()}}>Show list</Button></Link>
+            <Link to="/players/tracked-players-list"><Button onClick={()=>{setactivePage(false);}}>Show list</Button></Link>
           </Card>
         </Col>
         </Row>
@@ -77,13 +73,16 @@ const PlayersPage = (props) => {
           <Col className="players_list">
               { activePage === true ? playersList
               :
-                <Route path="/tracked-players-list">
-                  <PlayersDetails trackedPlayer={trackedPlayer} trackedplayersList={trackedplayersList}/>
+                <Route path="/players/tracked-players-list">
+                  <PlayersDetails trackedPlayer={trackedPlayer}/>
                 </Route>
               
             }
 
           </Col>
+        </Row>
+        <Row>
+          <h1>wait</h1>
         </Row>
        
       </Container>
