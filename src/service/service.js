@@ -15,4 +15,4 @@ const getStats = async (url) =>{
     
     return await res.json();
 }
-export  {getData,getStats}
+export {getData,getStats}

@@ -22,3 +22,11 @@ li{
 .active{
   margin: 5px;
 }
+.fw{
+  font-size: 18px;
+  font-weight: 900;
+}
+.fw-none{
+  font-size: 14px;
+  font-weight: normal;
+}

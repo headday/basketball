@@ -20,9 +20,9 @@ const PlayersDetails = (props) => {
                 <CardTitle>{elem.first_name}   {elem.last_name}</CardTitle>
                 <CardText>
                     Position {elem.position} <br/>
-                    height_feet {elem.height_feet} <br/>
-                    height_inches {elem.height_inches}<br/>
-                    weight_pounds {elem.weight_pounds} <br/>
+                    height_feet {elem.height_feet ? 'unkonow' : elem.height_feet} <br/>
+                    height_inches {elem.height_inches  ? 'unkonow' : elem.height_inches}<br/>
+                    weight_pounds {elem.weight_pounds ? 'unkonow' : elem.weight_pounds} <br/>
 
                     team abbreviation {elem.team.abbreviation} <br/>
                     City {elem.team.city}<br/>
