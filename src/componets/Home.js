@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
-import {getData,getStats} from '../service/service'
+import {getData} from '../service/service'
 import TeamsPage from './Teams'
 import PlayersPage from './Players'
 import TournamentsPage from './Tournaments'

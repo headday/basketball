@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {getData} from '../service/service'
 import PlayersDetails from './PlayersDetails'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';

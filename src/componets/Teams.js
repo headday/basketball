@@ -1,6 +1,5 @@
-import React,{useState} from 'react'
+import React from 'react'
 
-import {getData,getStats} from '../service/service'
 import { Card, Button, CardTitle, CardText, Col, Row} from 'reactstrap';
 
 import '../App.css'

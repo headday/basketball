@@ -1,7 +1,6 @@
-import React,{useEffect,useState} from 'react'
-import { BrowserRouter as Router, Route, Link, Switch,useHistory} from "react-router-dom";
-import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
-import {PlayersPage} from './Players'
+import React,{useEffect} from 'react'
+import { BrowserRouter as Router,useHistory} from "react-router-dom";
+import { Card, Button,CardTitle, CardText} from 'reactstrap';
 
 const PlayersDetails = (props) => {
     const {trackedPlayer,setactivePage} = props;
