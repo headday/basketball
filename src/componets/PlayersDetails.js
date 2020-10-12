@@ -3,7 +3,7 @@ import { BrowserRouter as Router,useHistory} from "react-router-dom";
 import { Card, Button,CardTitle, CardText} from 'reactstrap';
 
 const PlayersDetails = (props) => {
-    const {trackedPlayer,setactivePage} = props;
+    const {trackedPlayer} = props;
     const history = useHistory();
 
      useEffect(()=>{
@@ -44,7 +44,7 @@ const PlayersDetails = (props) => {
             {list}
 
         
-           <Button onClick={()=>{history.push('/players'); setactivePage(true)}}>Back</Button>
+           <Button onClick={()=>{history.push('/players');}}>Back</Button>
         
         </Router>
       
