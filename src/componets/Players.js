@@ -8,10 +8,9 @@ import Spinner from './spinner/Spinner'
 const PlayersPage = (props) => {
   const [players, setplayers] = useState([])
   const [loading, setloading] = useState(true);
-  
-
-
   const {settrackedPlayer,trackedPlayer,setcountPlayers,countPlayers} = props
+
+  
   const onUnTracked =(elem)=>{
     let res = trackedPlayer.findIndex((player=> player.id === elem.id))
     if(res !== -1){
@@ -27,8 +26,6 @@ const PlayersPage = (props) => {
       settrackedPlayer([...trackedPlayer,elem])
     }
   }
-
-
   useEffect(()=>{
     const fetchAPI = async () => {
       const res = await getData('https://www.balldontlie.io/api/v1/players')
