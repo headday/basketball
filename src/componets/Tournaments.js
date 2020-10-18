@@ -7,7 +7,7 @@ import '../App.css'
 
 const TournamentsPage = () => {
   const [games, setgames] = useState([]);
-  const [detail,setdetail] = useState();
+  const [detail,setdetail] = useState(1);
 
 
   useEffect( ()=>{
@@ -26,7 +26,7 @@ const gamesList = games.map(game =>
         <CardTitle className="fw">{game.home_team.abbreviation} <span className="fw-none">VS</span> {game.visitor_team.abbreviation}</CardTitle>
         <CardText>{game.home_team_score} : {game.visitor_team_score}</CardText>
         <CardText>Status {game.status}</CardText>
-        <Link to='/tournaments/details'><Button color="primary" onClick={()=>setdetail(game)}>Show details</Button></Link>
+        <Link to='/tournaments/details'><Button color="primary" onClick={()=>setdetail(game.id)}>Show details</Button></Link>
       </Card>
   </li>
   )
@@ -36,7 +36,7 @@ const gamesList = games.map(game =>
         {gamesList}
       </Route>
       <Route path='/tournaments/details'>
-        <TournamentsDetails game={detail}/>
+        <TournamentsDetails gameId={detail}/>
       </Route>
     </div>
   
