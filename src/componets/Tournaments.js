@@ -3,11 +3,13 @@ import {getData}  from '../service/service';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 import { Card, Button, CardTitle, CardText} from 'reactstrap';
 import TournamentsDetails from './TournamentsDetails'
+import Spinner from './spinner/Spinner'
 import '../App.css'
 
 const TournamentsPage = () => {
   const [games, setgames] = useState([]);
   const [detail,setdetail] = useState(1);
+  const [loading, setloading] = useState(true)
 
 
   useEffect( ()=>{
@@ -16,6 +18,7 @@ const TournamentsPage = () => {
   const getGames = async () =>{
     const games = await getData('https://www.balldontlie.io/api/v1/games');
     setgames(games.data)
+    setloading(false);
   }
   
 
@@ -30,6 +33,9 @@ const gamesList = games.map(game =>
       </Card>
   </li>
   )
+  if(loading){
+    return <Spinner/>
+  }
   return (
     <div className='d-flex flex-wrap'>
       <Route path='/tournaments' exact>

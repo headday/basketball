@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch,useHistory } from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import {getData} from '../service/service'
 import TeamsPage from './Teams'
@@ -12,6 +12,8 @@ const Home = () => {
     const [teams, setteams] = useState([])
     const [trackedPlayer, settrackedPlayer] = useState([])
     const [countPlayers, setcountPlayers] = useState(0)
+
+    const history = useHistory();
 
     const showTeams = async () =>{
         const res = await getData('https://www.balldontlie.io/api/v1/teams')
@@ -29,7 +31,7 @@ const Home = () => {
         <Container>
         <Row>
             <Col md={{size: 3 , offset:1}}>
-                <img className="logo" src={logo} alt="logo"/>
+              <Link to='/' exact>  <img className="logo" src={logo} alt="logo"/></Link>
             </Col>
             <Col md={{size: 6, offset: 2}}>
                 <Link to='/teams'><button color="primary" onClick={showTeams} className='btn nav_item'>Teams</button></Link>
@@ -38,6 +40,11 @@ const Home = () => {
             </Col>   
         </Row>
         <Switch>
+            <Route path ='/' exact>
+
+                <h1>hello</h1>
+
+            </Route>
             <Route path='/teams'>
                 <TeamsPage  deletePlayer={deletePlayer} teams={teams}/>
             </Route>

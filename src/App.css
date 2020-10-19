@@ -30,3 +30,49 @@ li{
   font-size: 14px;
   font-weight: normal;
 }
+.card_detail{
+  width: 600px;
+  min-height:300px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.card_title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  padding-bottom: 5px;
+  border: 3px solid grey;
+  border-bottom: none;
+}
+.card_game_details_main{
+  display: inline-block;
+  width: 150px;
+  height: 140px;
+  padding-top:  10px;
+  margin-left: 10px;
+  border-right: 3px solid grey;
+}
+.card_game_details_submain{
+  display: inline-block;
+  width: 350px;
+  min-height: 150px;
+  margin-left: 30px;
+}
+.card_game_details{
+  border: 3px solid grey;
+}
+.details_btn{
+  display: block;
+  margin: 0 auto;
+}
+.card_detail h2{
+  font-size: 20px;
+  display: inline-block;
+  margin: 20px;
+}
+.card_detail span{
+  font-weight: 700;
+  font-size: 18px;
+}
