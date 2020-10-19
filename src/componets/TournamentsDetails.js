@@ -1,9 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { Container,Button } from 'reactstrap';
-import { BrowserRouter as Router,useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Circle from './circle/Circle';
-import {getData} from '../service/service'
-
 const TournamentDetails = (props) => {
     const [detail, setdetail] = useState(
       {

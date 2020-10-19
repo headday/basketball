@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {getData}  from '../service/service';
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {Route, Link} from "react-router-dom";
 import { Card, Button, CardTitle, CardText} from 'reactstrap';
 import TournamentsDetails from './TournamentsDetails'
 import Spinner from './spinner/Spinner'
@@ -25,7 +25,7 @@ const TournamentsPage = () => {
 
 const gamesList = games.map(game => 
   <li key={game.id}>
-      <Card body className="text-center">
+      <Card body className="text-center m-1">
         <CardTitle className="fw">{game.home_team.abbreviation} <span className="fw-none">VS</span> {game.visitor_team.abbreviation}</CardTitle>
         <CardText>{game.home_team_score} : {game.visitor_team_score}</CardText>
         <CardText>Status {game.status}</CardText>
@@ -45,7 +45,6 @@ const gamesList = games.map(game =>
         <TournamentsDetails gameId={detail}/>
       </Route>
     </div>
-  
   )
 }
 

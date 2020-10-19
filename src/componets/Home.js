@@ -1,20 +1,18 @@
 import React,{useState} from 'react'
-import { BrowserRouter as Router, Route, Link, Switch,useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import { Container, Row, Col } from 'reactstrap';
 import {getData} from '../service/service'
 import TeamsPage from './Teams'
 import PlayersPage from './Players'
 import TournamentsPage from './Tournaments'
 import logo from '../images/logo.svg'
+
 import '../App.css'
 
 const Home = () => {
     const [teams, setteams] = useState([])
     const [trackedPlayer, settrackedPlayer] = useState([])
     const [countPlayers, setcountPlayers] = useState(0)
-
-    const history = useHistory();
-
     const showTeams = async () =>{
         const res = await getData('https://www.balldontlie.io/api/v1/teams')
         setteams(await res.data.slice(0,5))
@@ -22,7 +20,6 @@ const Home = () => {
     const deletePlayer = (id) =>{
         const teamId = teams.findIndex(item => item.id === id);
         const arr = [...teams.slice(0,teamId),...teams.slice(teamId+1)]
-
         setteams(arr)
     }
 
@@ -41,9 +38,7 @@ const Home = () => {
         </Row>
         <Switch>
             <Route path ='/' exact>
-
                 <h1>hello</h1>
-
             </Route>
             <Route path='/teams'>
                 <TeamsPage  deletePlayer={deletePlayer} teams={teams}/>
