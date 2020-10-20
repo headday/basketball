@@ -28,7 +28,11 @@ const TeamsPage = () => {
         setteamsOnPage(arr);
     }
     const navItems = teamsOnPage.map((elem,index) => {
+        if(activePage === index){
+            return <Button color='primary' onClick={()=> setactivePage(index)}>{index+1}</Button>
+        }
         return(
+            
             <Button onClick={()=> setactivePage(index)}>{index+1}</Button>
         )
     })

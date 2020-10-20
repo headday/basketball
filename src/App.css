@@ -81,3 +81,7 @@ li{
   height: 50px;
   margin: 0 auto;
 }
+.nav_elems{
+  display: flex;
+  justify-content: space-around;
+}
