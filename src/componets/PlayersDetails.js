@@ -1,10 +1,9 @@
 import React,{useEffect} from 'react'
-import { BrowserRouter as Router,useHistory} from "react-router-dom";
 import { Card, Button,CardTitle, CardText} from 'reactstrap';
 
 const PlayersDetails = (props) => {
     const {trackedPlayer} = props;
-    const history = useHistory();
+
 
      useEffect(()=>{
 
@@ -39,15 +38,9 @@ const PlayersDetails = (props) => {
     })  
   return (
     <>
-        <Router>
-            
-            {list}
 
-        
-           <Button onClick={()=>{history.push('/players');}}>Back</Button>
-        
-        </Router>
-      
+            {list}
+        <div className='player_details'></div>
     </>
   )
 }

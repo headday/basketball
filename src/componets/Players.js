@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link ,useHistory} from "react-router-dom";
 import {getData} from '../service/service'
 import PlayersDetails from './PlayersDetails'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
@@ -8,7 +8,10 @@ import Spinner from './spinner/Spinner'
 const PlayersPage = (props) => {
   const [players, setplayers] = useState([])
   const [loading, setloading] = useState(true);
-  const {settrackedPlayer,trackedPlayer,setcountPlayers,countPlayers} = props
+  const [playerDetailShow, setplayerDetailShow] = useState(false)
+  const {settrackedPlayer,trackedPlayer,setcountPlayers,countPlayers} = props;
+
+  const history = useHistory();
 
   
   const onUnTracked =(elem)=>{
@@ -21,7 +24,6 @@ const PlayersPage = (props) => {
   const onTracked = (elem) =>{
 
     if(trackedPlayer.findIndex((player => player.id === elem.id)) === -1){
-      console.log('add');
       setcountPlayers(countPlayers + 1);
       settrackedPlayer([...trackedPlayer,elem])
     }
@@ -64,7 +66,8 @@ const PlayersPage = (props) => {
           <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
             <CardTitle>Your tracked players</CardTitle>
             <CardText>{countPlayers}</CardText>
-            <Link to="/players/tracked-players-list"><Button>Show list</Button></Link>
+            {playerDetailShow ? <Link to='/players'> <Button onClick={()=>setplayerDetailShow(false)}>Back</Button></Link>  : <Link to="/players/tracked-players-list"><Button onClick={()=>setplayerDetailShow(true)}>Show list</Button></Link> }
+            
           </Card>
         </Col>
         </Row>
@@ -79,10 +82,8 @@ const PlayersPage = (props) => {
                   </Route>
                   <Route path="/players/tracked-players-list">
                     <PlayersDetails  trackedPlayer={trackedPlayer}/>
-                  </Route> 
+                  </Route>
                 </>}
-          
-
           </Col>
         </Row>
         <Row>
