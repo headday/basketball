@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { BrowserRouter as Router, Route, Link ,useHistory} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {getData} from '../service/service'
 import PlayersDetails from './PlayersDetails'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
@@ -10,8 +10,6 @@ const PlayersPage = (props) => {
   const [loading, setloading] = useState(true);
   const [playerDetailShow, setplayerDetailShow] = useState(false)
   const {settrackedPlayer,trackedPlayer,setcountPlayers,countPlayers} = props;
-
-  const history = useHistory();
 
   
   const onUnTracked =(elem)=>{

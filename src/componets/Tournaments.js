@@ -20,9 +20,6 @@ const TournamentsPage = () => {
     setgames(games.data)
     setloading(false);
   }
-  
-
-
 const gamesList = games.map(game => 
   <li key={game.id}>
       <Card body className="text-center m-1">
