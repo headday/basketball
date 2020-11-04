@@ -22,6 +22,7 @@ const Home = () => {
                 <Link to='/teams'><button color="primary"className='btn nav_item'>Teams</button></Link>
                 <Link to='/players'><button color="primary"  className='btn nav_item'>Players</button></Link>
                 <Link to='/tournaments' ><button color="primary"  className='btn nav_item'>Tournaments</button></Link>
+              
             </Col>   
         </Row>
         <Switch>
