@@ -18,9 +18,16 @@ const activePageSet = (index) =>{
         payload:index
     }
 }
+const playersLoaded = (players) =>{
+    return{
+        type: 'LOAD_PLAYERS',
+        payload:players
+    }
+}
 
 export {
     teamsLoaded,
     loadElems,
-    activePageSet
+    activePageSet,
+    playersLoaded
 };

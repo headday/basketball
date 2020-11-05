@@ -3,7 +3,8 @@ const initialState = {
     teams : [[]],
     activePage : 0,
     counter: 0,
-    loading:true
+    loading:true,
+    players:[]
 }
 const reducer = (state = initialState,action) =>{
     switch(action.type){
@@ -21,6 +22,11 @@ const reducer = (state = initialState,action) =>{
             return{
                 ...state,
                 loading:false
+            }
+        case 'LOAD_PLAYERS':
+            return{
+                ...state,
+                players: action.payload
             }
         default:
             return state;

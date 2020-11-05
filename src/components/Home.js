@@ -9,8 +9,7 @@ import logo from '../images/logo.svg'
 import '../App.css'
 
 const Home = () => {
-    const [trackedPlayer, settrackedPlayer] = useState([])
-    const [countPlayers, setcountPlayers] = useState(0)
+   
   return (
    <Router>
         <Container>
@@ -33,12 +32,7 @@ const Home = () => {
                 <TeamsPage/>
             </Route>
             <Route exact path='/players'> 
-                <PlayersPage 
-                settrackedPlayer={settrackedPlayer} 
-                trackedPlayer={trackedPlayer} 
-                countPlayers={countPlayers}
-                setcountPlayers={setcountPlayers}
-                />
+                <PlayersPage/>
             </Route>
             <Route path='/tournaments'>
                 <TournamentsPage/>
