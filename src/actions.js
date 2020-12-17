@@ -24,10 +24,17 @@ const playersLoaded = (players) =>{
         payload:players
     }
 }
+const authSucces = (user) =>{
+    return{
+        type:'AUTH',
+        payload:user
+    }
+}
 
 export {
     teamsLoaded,
     loadElems,
     activePageSet,
-    playersLoaded
+    playersLoaded,
+    authSucces
 };

@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
-import {getData} from '../service/service'
-import PlayersDetails from './PlayersDetails'
+import {getData} from '../../service/service'
+import PlayersDetails from '../playerDetails/PlayersDetails'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
-import Spinner from './spinner/Spinner'
+import Spinner from '../spinner/Spinner'
 import {connect} from 'react-redux'
-import {playersLoaded,loadElems} from '../actions'
+import {playersLoaded,loadElems} from '../../actions'
 
 const PlayersPage = (props) => {
 	const {playersLoaded,loadElems} = props; //actions

@@ -1,5 +1,6 @@
 
 const initialState = {
+    auth:true,
     teams : [[]],
     activePage : 0,
     counter: 0,

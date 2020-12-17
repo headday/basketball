@@ -1,15 +1,23 @@
 import React,{useState} from 'react'
 import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {connect} from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
 import TeamsPage from './Teams'
 import PlayersPage from './Players'
 import TournamentsPage from './Tournaments'
-import logo from '../images/logo.svg'
+import LoginPage from '../auth/LoginPage'
+import {authSucces} from '../../actions'
+import logo from '../../images/logo.svg'
 
-import '../App.css'
+import '../../App.css'
 
-const Home = () => {
-   
+const Home = (props) => {
+   const {auth} = props
+   if(auth == false){
+       return(
+            <LoginPage/>
+       )
+   }
   return (
    <Router>
         <Container>
@@ -42,5 +50,13 @@ const Home = () => {
    </Router>
   )
 }
+const mapStateToProps = (state) =>{
+	return{
+		auth:state.auth,
+	}
+}
+const mapDispatchToProps={
+	authSucces
+}
 
-export default Home
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

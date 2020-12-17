@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from 'react'
-import {getData}  from '../service/service';
+import {getData}  from '../../service/service';
 import {Route, Link} from "react-router-dom";
 import { Card, Button, CardTitle, CardText} from 'reactstrap';
-import TournamentsDetails from './TournamentsDetails'
-import Spinner from './spinner/Spinner'
-import '../App.css'
+import TournamentsDetails from '../tournamentsDetails/TournamentsDetails'
+import Spinner from '../spinner/Spinner'
+import '../../App.css'
 
 const TournamentsPage = () => {
   const [games, setgames] = useState([]);

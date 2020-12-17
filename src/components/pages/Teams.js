@@ -1,10 +1,10 @@
 import React,{useEffect,useState} from 'react'
 import { Card, Button, CardTitle, CardText, Col, Row} from 'reactstrap';
-import Spinner from './spinner/Spinner';
-import {getData} from '../service/service';
+import Spinner from '../spinner/Spinner';
+import {getData} from '../../service/service';
 import {connect} from 'react-redux';
-import {teamsLoaded,activePageSet,loadElems} from '../actions';
-import '../App.css'
+import {teamsLoaded,activePageSet,loadElems} from '../../actions';
+import '../../App.css'
 
 const TeamsPage = (props) => {
 	const {teamsLoaded,activePageSet,loadElems} = props; ///actions
