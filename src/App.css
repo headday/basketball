@@ -87,3 +87,30 @@ li{
   display: flex;
   justify-content: space-around;
 }
+.login_section{
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.login_label{
+  text-align: center;
+}
+.login_block{
+  width: 250px;
+  margin: 0 auto;
+}
+.login_input{
+  display: inline-block;
+  width: 100%;
+
+}
+.login_block_main_label{
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto;
+}
+.login_btn{
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+}

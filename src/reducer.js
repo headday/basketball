@@ -1,6 +1,8 @@
 
 const initialState = {
-    auth:true,
+    auth:false,
+    login:"",
+    passwor:"",
     teams : [[]],
     activePage : 0,
     counter: 0,
@@ -28,6 +30,11 @@ const reducer = (state = initialState,action) =>{
             return{
                 ...state,
                 players: action.payload
+            }
+        case 'LOGIN':
+            return{
+                ...state,
+                auth:true
             }
         default:
             return state;

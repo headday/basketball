@@ -81,17 +81,16 @@ const PlayersPage = (props) => {
 				</Row>
 				<Row>
 					<Col className="players_list">
-							<Route path='/players' exact>
-									{playersList}
-							</Route>
-							<Route path="/players/tracked-players-list">
-								<PlayersDetails  trackedPlayer={trackedPlayer}/>
-							</Route>
+						<Route path='/players' exact>
+								{playersList}
+						</Route>
+						<Route path="/players/tracked-players-list">
+							<PlayersDetails  trackedPlayer={trackedPlayer}/>
+						</Route>
 					</Col>
 				</Row>
 				<Row>
 				</Row>
-			 
 			</Container>
 			</Router>
 			

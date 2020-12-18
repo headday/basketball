@@ -1,15 +1,61 @@
-import React from 'react'
-
-
-const LoginPage = () =>{
-
-
+import React,{useState} from 'react'
+import {Container,Input,Button} from 'reactstrap'
+import {connect} from 'react-redux'
+import {useHistory,Redirect, Link} from "react-router-dom";
+import {authSucces} from '../../actions'
+import '../../App.css'
+const LoginPage = (props) =>{
+    const [login, setlogin] = useState("")
+    const [password, setPassword] = useState("")
+    const {authSucces} = props //action
+    const {auth} = props // state
+     const handleLoginChange = (event) =>{
+        setlogin(event.target.value)
+    } 
+    const handlePasswordChange = (event) =>{
+        setPassword(event.target.value)
+    } 
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        authSucces({login:login,password:password})
+        localStorage.auth = true
+    }
+    if(auth){
+        return(
+            <Redirect to="/"/>
+        )
+    }
     return(
-        <div>
-            <h3>
-                authPage
+        <div className="login_section">
+            <h3 className="login_label">
+                Sign In
             </h3>
+            <div className="login_form">
+                <form onSubmit={handleSubmit}>
+                    <div className="login_block">
+                        <label className="login_block_main_label">
+                            <div className="login_block_label">Login</div>
+                            <Input type="text" name="login" placeholder="Your login" value={login} onChange={handleLoginChange}/>
+                        </label>
+                    </div>
+                    <div className="login_block">
+                        <label className="login_block_main_label">
+                            <div className="login_block_label">Password</div>
+                            <Input type="password" name="password" placeholder="Your password" value={password} onChange={handlePasswordChange}/>
+                        </label>
+                    </div>
+                    <Button className="login_btn">SingIn</Button>
+                </form>
+            </div>
         </div>
     )
 }
-export default LoginPage
+const mapStateToProps = (state) =>{
+	return{
+		auth : state.auth
+	}
+}
+const mapDispatchToProps={
+	authSucces
+}
+export default connect(mapStateToProps,mapDispatchToProps)(LoginPage)

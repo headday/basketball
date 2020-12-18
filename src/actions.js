@@ -1,7 +1,6 @@
 
 
 const teamsLoaded = (teams) =>{
-    console.log(teams);
     return{
         type: 'LOAD_TEAMS',
         payload : teams
@@ -26,7 +25,7 @@ const playersLoaded = (players) =>{
 }
 const authSucces = (user) =>{
     return{
-        type:'AUTH',
+        type:'LOGIN',
         payload:user
     }
 }

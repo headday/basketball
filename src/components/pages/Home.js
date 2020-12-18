@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import { BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import React,{useState,useEffect} from 'react'
+import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
 import {connect} from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
 import TeamsPage from './Teams'
@@ -12,12 +12,17 @@ import logo from '../../images/logo.svg'
 import '../../App.css'
 
 const Home = (props) => {
-   const {auth} = props
-   if(auth == false){
-       return(
-            <LoginPage/>
-       )
-   }
+   const {auth,authSucces} = props
+    useEffect(()=>{
+       const checkAuth = () =>{
+        if(localStorage.auth){
+            authSucces(localStorage.auth)
+        }
+    }
+    checkAuth()
+    
+    
+   },[])
   return (
    <Router>
         <Container>
@@ -33,17 +38,23 @@ const Home = (props) => {
             </Col>   
         </Row>
         <Switch>
+        
+            
             <Route path ='/' exact>
-                <h1>hello</h1>
+            {auth == false ? <Redirect to="/login" /> :  <h1>hello</h1>   }
             </Route>
             <Route path='/teams'>
-                <TeamsPage/>
+                {auth == false ? <Redirect to="/login" /> :  <TeamsPage/> }
             </Route>
             <Route exact path='/players'> 
-                <PlayersPage/>
+                {auth == false ? <Redirect to="/login" /> :  <PlayersPage/> }
             </Route>
             <Route path='/tournaments'>
-                <TournamentsPage/>
+                {auth == false ? <Redirect to="/login" /> :  <TournamentsPage/> }
+            </Route>
+            <Route path='/login'>
+            <LoginPage/>
+                
             </Route>
         </Switch>
     </Container>
