@@ -7,7 +7,7 @@ import { Container, Row, Col } from 'reactstrap';
 import TeamsPage from './components/pages/Teams'
 import PlayersPage from './components/pages/Players'
 import TournamentsPage from './components/pages/Tournaments'
-import LoginPage from './components/auth/LoginPage'
+import LoginPage from './components/pages/LoginPage'
 import PrivateRoute from './components/privateRoute/PrivateRoute'
 import ProfilePage from './components/pages/Profile'
 import {authSucces} from './actions'

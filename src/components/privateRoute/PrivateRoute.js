@@ -10,7 +10,4 @@ const PrivateRoute = (props) => {
     </>
   )
 }
-/* {condition ? (<Route  path={props.path}  exact={props.exact} component={props.component} />) : 
-        (<Redirect  to="/page/login"  />)} */
-
 export default PrivateRoute
