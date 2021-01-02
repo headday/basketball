@@ -1,6 +1,7 @@
 import React from 'react'
 
-const ProfilePage = () => {
+
+const ProfilePage = (props) => {
   return (
     <h1>
       profile

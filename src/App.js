@@ -8,6 +8,8 @@ import TeamsPage from './components/pages/Teams'
 import PlayersPage from './components/pages/Players'
 import TournamentsPage from './components/pages/Tournaments'
 import LoginPage from './components/auth/LoginPage'
+import PrivateRoute from './components/privateRoute/PrivateRoute'
+import ProfilePage from './components/pages/Profile'
 import {authSucces} from './actions'
 import logo from './images/logo.svg'
 import './App.css';
@@ -51,12 +53,8 @@ function App(props) {
             <Route path='/tournaments'>
                 <TournamentsPage/>
             </Route>
-            <Route path='/login'>
-            <LoginPage/>
-            </Route>
-            <Route path='/profile'>
-            <LoginPage/>
-            </Route>
+            <Route path='/login' component={LoginPage}/>
+            <PrivateRoute path='/profile' component={ProfilePage}/>
         </Switch>
     </Container>
    </Router>)
