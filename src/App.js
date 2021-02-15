@@ -63,10 +63,10 @@ function App(props) {
     </Container>
    </Router>)
 }
-const mapStateToProps = (state) =>{
+const mapStateToProps = ({auth,trackedPlayers}) =>{
 	return{
-		auth:state.auth,
-        trackedPlayers:state.trackedPlayers
+		auth,
+        trackedPlayers
 	}
 }
 const mapDispatchToProps={

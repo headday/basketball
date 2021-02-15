@@ -9,9 +9,6 @@ import '../../App.css'
 const TeamsPage = (props) => {
 	const {teamsLoaded,activePageSet,loadElems} = props; ///actions
 	const {teams,activePage,loading} = props;   //state elements
-
-	
-	
 	useEffect(() => {
 		const showTeams = async () =>{
 			const res = await getData('https://www.balldontlie.io/api/v1/teams')
@@ -20,8 +17,6 @@ const TeamsPage = (props) => {
 		}
 		showTeams();
 	},[])
-
-
 	const teamsPages = (teams)=>{
 		const arr = [];
 		let prev = 0
@@ -32,8 +27,6 @@ const TeamsPage = (props) => {
 		}
 		teamsLoaded(arr);
 	}
-
-
 	const navItems = teams.map((elem,index) => {
 		if(activePage === index){
 			return <Button color='primary' onClick={()=> activePageSet(index)}>{index+1}</Button>
@@ -74,11 +67,11 @@ const TeamsPage = (props) => {
 		</Row>
 	)  
 }
-const mapStateToProps = (state) =>{
+const mapStateToProps = ({teams,activePage,loading}) =>{
 	return{
-		teams : state.teams,
-		activePage : state.activePage,
-		loading : state.loading
+		teams,
+		activePage,
+		loading
 	}
 }
 const mapDispatchToProps = {

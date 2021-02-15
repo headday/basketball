@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {getData} from '../../service/service'
-import PlayersDetails from '../playerDetails/PlayersDetails'
 import { Card, Button, CardHeader, CardBody,CardTitle, CardText, Container,Row, Col } from 'reactstrap';
 import Spinner from '../spinner/Spinner'
 import {connect} from 'react-redux'
@@ -9,7 +8,6 @@ import {playersLoaded,loadElems,trackedPlayerUpdate,countPlayersUpdate} from '..
 const PlayersPage = (props) => {
 	const {playersLoaded,loadElems,trackedPlayerUpdate,countPlayersUpdate} = props; //actions
 	const {players,loading,trackedPlayers,countPlayers} = props; //state elems
-	const [playerDetailShow, setplayerDetailShow] = useState(false)
 	const onUnTracked = (elem)=>{
 		let res = trackedPlayers.findIndex((player=> player.id === elem.id))
 		if(res !== -1){
@@ -63,26 +61,16 @@ const PlayersPage = (props) => {
 					<Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
 						<CardTitle>Your tracked players</CardTitle>
 						<CardText>{countPlayers}</CardText>
-						{playerDetailShow 
-						? <Link to='/players'> <Button onClick={()=>setplayerDetailShow(false)}>Back</Button></Link>  
-						: <Link to="/players/tracked-players-list"><Button onClick={()=>setplayerDetailShow(true)}>Show list</Button></Link> }
-						
+						 <Link to='/players/tracked-players-list'><Button >Show list</Button></Link>  
 					</Card>
 				</Col>
 				</Row>
 				<Row>
 					<Col className="players_list">
-						{/* <Route path='/players' exact>
-								{playersList}
-						</Route>
-						<Route path="/players/tracked-players-list">
-							<PlayersDetails  trackedPlayer={trackedPlayers}/>
-						</Route> */}
 						{playersList}
 					</Col>
 				</Row>
 			</Container>
-			
 		</>
 	)
 }

@@ -10,9 +10,9 @@ const Home = (props) => {
     <h1>hello</h1>
   )
 }
-const mapStateToProps = (state) =>{
+const mapStateToProps = ({auth}) =>{
 	return{
-		auth:state.auth,
+		auth
 	}
 }
 const mapDispatchToProps={

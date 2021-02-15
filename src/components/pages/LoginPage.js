@@ -64,9 +64,9 @@ const LoginPage = (props) =>{
         </div>
     )
 }
-const mapStateToProps = (state) =>{
+const mapStateToProps = ({auth}) =>{
 	return{
-		auth : state.auth
+		auth
 	}
 }
 const mapDispatchToProps={
