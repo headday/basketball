@@ -1,7 +1,8 @@
 import React,{useEffect} from 'react'
-import { Card, Button,CardTitle, CardText} from 'reactstrap';
-
+import { Card, Button,CardTitle, CardText,Row,Col} from 'reactstrap';
+import {useHistory} from "react-router-dom";
 const PlayersDetails = (props) => {
+    const history = useHistory();
     const {trackedPlayers} = props;
 
 
@@ -12,7 +13,7 @@ const PlayersDetails = (props) => {
    
     const list =  trackedPlayers.map(elem =>{
         return (
-            <li key={elem.id}>
+            <li className="players_card" key={elem.id}>
                 
                 <Card body outline color="info">
                 <CardTitle>{elem.first_name}   {elem.last_name}</CardTitle>
@@ -38,9 +39,17 @@ const PlayersDetails = (props) => {
     })  
   return (
     <>
-
+    
+    <Row>
+        <Col md={{md:3},{offset:5}}>
+            <Button onClick={history.goBack}>Back</Button>
+        </Col>
+    </Row>
+    <Row>
+        <div className='players_details'>
             {list}
-        <div className='player_details'></div>
+        </div>
+    </Row>
     </>
   )
 }

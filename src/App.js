@@ -51,11 +51,11 @@ function App(props) {
             <Route exact path='/players'> 
                 <PlayersPage/> 
             </Route>
-            <Route path='/tournaments'>
-                <TournamentsPage/>
-            </Route>
             <Route path="/players/tracked-players-list">
                 <PlayersDetails trackedPlayers={trackedPlayers}/>
+            </Route>
+            <Route path='/tournaments'>
+                <TournamentsPage/>
             </Route>
             <Route path='/login' component={LoginPage}/>
             <PrivateRoute path='/profile' component={ProfilePage}/>

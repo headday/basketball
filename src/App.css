@@ -76,10 +76,14 @@ li{
   font-weight: 700;
   font-size: 18px;
 }
-.player_details{
-  width: 50px;
-  height: 50px;
-  margin: 0 auto;
+.players_details{
+  display: flex;
+  flex-wrap: wrap;
+}
+.players_card{
+  width: 250px;
+  min-height: 400px;
+  margin: 10px;
 }
 .nav_elems{
   margin-top: 20px;
