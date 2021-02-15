@@ -19,8 +19,6 @@ const TeamsPage = (props) => {
 			loadElems(false);
 		}
 		showTeams();
-	   
-		
 	},[])
 
 

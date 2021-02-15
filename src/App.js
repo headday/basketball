@@ -10,6 +10,7 @@ import TournamentsPage from './components/pages/Tournaments'
 import LoginPage from './components/pages/LoginPage'
 import PrivateRoute from './components/privateRoute/PrivateRoute'
 import ProfilePage from './components/pages/Profile'
+import PlayersDetails from './components/playerDetails/PlayersDetails'
 import {authSucces} from './actions'
 import logo from './images/logo.svg'
 import './App.css';
@@ -17,7 +18,7 @@ import './App.css';
 import Home from './components/pages/Home'
 
 function App(props) {
-  const {auth,authSucces} = props
+  const {auth,authSucces,trackedPlayers} = props
     useEffect(()=>{
        const checkAuth = () =>{
         if(localStorage.auth){
@@ -53,6 +54,9 @@ function App(props) {
             <Route path='/tournaments'>
                 <TournamentsPage/>
             </Route>
+            <Route path="/players/tracked-players-list">
+                <PlayersDetails trackedPlayers={trackedPlayers}/>
+            </Route>
             <Route path='/login' component={LoginPage}/>
             <PrivateRoute path='/profile' component={ProfilePage}/>
         </Switch>
@@ -62,6 +66,7 @@ function App(props) {
 const mapStateToProps = (state) =>{
 	return{
 		auth:state.auth,
+        trackedPlayers:state.trackedPlayers
 	}
 }
 const mapDispatchToProps={

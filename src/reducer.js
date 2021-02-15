@@ -2,12 +2,14 @@
 const initialState = {
     auth:false,
     login:"",
-    passwor:"",
+    password:"",
     teams : [[]],
     activePage : 0,
     counter: 0,
     loading:true,
-    players:[]
+    players:[],
+    trackedPlayers:[],
+    countPlayers:0
 }
 const reducer = (state = initialState,action) =>{
     switch(action.type){
@@ -35,6 +37,17 @@ const reducer = (state = initialState,action) =>{
             return{
                 ...state,
                 auth:true
+            }
+        case 'TRACKED_PLAYERS_UPDATE':
+            return{
+                ...state,
+                trackedPlayers: action.payload
+            }
+        case 'COUNT_PLAYERS_UPDATE':
+            return{
+                ...state,
+                countPlayers: action.payload
+                
             }
         default:
             return state;

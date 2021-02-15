@@ -29,11 +29,25 @@ const authSucces = (user) =>{
         payload:user
     }
 }
+const trackedPlayerUpdate = (userID) =>{
+    return{
+        type: "TRACKED_PLAYERS_UPDATE",
+        payload:userID
+    }
+}
+const countPlayersUpdate = (count) =>{
+    return{
+        type: "COUNT_PLAYERS_UPDATE",
+        payload:count
+    }
+}
 
 export {
     teamsLoaded,
     loadElems,
     activePageSet,
     playersLoaded,
-    authSucces
+    authSucces,
+    trackedPlayerUpdate,
+    countPlayersUpdate
 };

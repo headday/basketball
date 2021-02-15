@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { Card, Button,CardTitle, CardText} from 'reactstrap';
 
 const PlayersDetails = (props) => {
-    const {trackedPlayer} = props;
+    const {trackedPlayers} = props;
 
 
      useEffect(()=>{
@@ -10,7 +10,7 @@ const PlayersDetails = (props) => {
         
     },[]); 
    
-    const list =  trackedPlayer.map(elem =>{
+    const list =  trackedPlayers.map(elem =>{
         return (
             <li key={elem.id}>
                 
@@ -18,9 +18,9 @@ const PlayersDetails = (props) => {
                 <CardTitle>{elem.first_name}   {elem.last_name}</CardTitle>
                 <CardText>
                     Position {elem.position} <br/>
-                    height_feet {elem.height_feet ? 'unkonow' : elem.height_feet} <br/>
-                    height_inches {elem.height_inches  ? 'unkonow' : elem.height_inches}<br/>
-                    weight_pounds {elem.weight_pounds ? 'unkonow' : elem.weight_pounds} <br/>
+                    height_feet {elem.height_feet ? 'unknow' : elem.height_feet} <br/>
+                    height_inches {elem.height_inches  ? 'unknow' : elem.height_inches}<br/>
+                    weight_pounds {elem.weight_pounds ? 'unknow' : elem.weight_pounds} <br/>
 
                     team abbreviation {elem.team.abbreviation} <br/>
                     City {elem.team.city}<br/>
