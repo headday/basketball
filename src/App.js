@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   BrowserRouter as Router,
   Route,
   Link,
   Switch,
-  Redirect,
+  
 } from "react-router-dom";
 import { connect } from "react-redux";
 import { Container, Row, Col } from "reactstrap";
@@ -24,7 +24,7 @@ import "./App.css";
 import Home from "./components/pages/Home";
 
 function App(props) {
-  const { auth, authSucces, trackedPlayers } = props;
+  const { authSucces, trackedPlayers } = props;
   useEffect(() => {
     const checkAuth = () => {
       if (localStorage.auth) {
@@ -32,7 +32,7 @@ function App(props) {
       }
     };
     checkAuth();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <Router>
       <Container>

@@ -4,7 +4,7 @@ import './circle.css';
 const Circle = () => {
   return (
     <>
-      <div class="loadingio-spinner-spinner-v0o6lil1a0o"><div class="ldio-cav2fy15ufj">
+      <div className="loadingio-spinner-spinner-v0o6lil1a0o"><div className="ldio-cav2fy15ufj">
 <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
 </div></div>
 

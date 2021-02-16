@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getData } from "../../service/service";
 import {
   Card,
@@ -28,6 +28,15 @@ const PlayersPage = (props) => {
     countPlayersUpdate,
   } = props; //actions
   const { players, loading, trackedPlayers, countPlayers } = props; //state elems
+  useEffect(() => {
+    const fetchAPI = async () => {
+      const res = await getData("https://www.balldontlie.io/api/v1/players");
+      playersLoaded(await res.data);
+      loadElems(false);
+    };
+    fetchAPI();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const onUnTracked = (elem) => {
     let res = trackedPlayers.findIndex((player) => player.id === elem.id);
     if (res !== -1) {
@@ -44,14 +53,7 @@ const PlayersPage = (props) => {
       trackedPlayerUpdate([...trackedPlayers, elem]);
     }
   };
-  useEffect(() => {
-    const fetchAPI = async () => {
-      const res = await getData("https://www.balldontlie.io/api/v1/players");
-      playersLoaded(await res.data);
-      loadElems(false);
-    };
-    fetchAPI();
-  }, []);
+
   const playersList = players.map((elem) => {
     return (
       <Card className="player_card" key={elem.id}>

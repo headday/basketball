@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getData } from "../../service/service";
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Card, Button, CardTitle, CardText } from "reactstrap";
-import TournamentsDetails from "../tournamentsDetails/TournamentsDetails";
 import Spinner from "../spinner/Spinner";
 import "../../App.css";
 
 const TournamentsPage = () => {
   const [games, setgames] = useState([]);
-  const [detail, setdetail] = useState(1);
   const [loading, setloading] = useState(true);
 
   useEffect(() => {
@@ -31,7 +29,7 @@ const TournamentsPage = () => {
         </CardText>
         <CardText>Status {game.status}</CardText>
         <Link to={`/tournaments/${game.id}`}>
-          <Button color="primary" onClick={() => setdetail(game.id)}>
+          <Button color="primary">
             Show details
           </Button>
         </Link>

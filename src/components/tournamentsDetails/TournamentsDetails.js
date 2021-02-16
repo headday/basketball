@@ -22,7 +22,7 @@ const TournamentDetails = (props) => {
       setloading(false);
     };
     getGames();
-  }, [id]);
+  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <Container>
       <div className="card_detail">

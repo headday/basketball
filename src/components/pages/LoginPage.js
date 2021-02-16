@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Container, Input, Button, FormFeedback } from "reactstrap";
+import {  Input, Button } from "reactstrap";
 import { connect } from "react-redux";
-import { useHistory, Redirect, Link } from "react-router-dom";
+import {  Redirect } from "react-router-dom";
 import { authSucces } from "../../actions";
 import "../../App.css";
 const LoginPage = (props) => {
@@ -18,7 +18,7 @@ const LoginPage = (props) => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (login == "test" && password == "123123") {
+    if (login === "test" && password === "123123") {
       authSucces({ login: login, password: password });
       localStorage.auth = true;
     } else {
@@ -63,7 +63,7 @@ const LoginPage = (props) => {
             </label>
           </div>
           <div className="login_block">
-            <div>{error == true ? "Invalid login or password" : ""}</div>
+            <div>{error === true ? "Invalid login or password" : ""}</div>
           </div>
           <Button className="login_btn">SingIn</Button>
         </form>

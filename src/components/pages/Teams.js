@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Card, Button, CardTitle, CardText, Col, Row } from "reactstrap";
 import Spinner from "../spinner/Spinner";
 import { getData } from "../../service/service";
@@ -16,7 +16,7 @@ const TeamsPage = (props) => {
       loadElems(false);
     };
     showTeams();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const teamsPages = (teams) => {
     const arr = [];
     let prev = 0;
@@ -30,7 +30,7 @@ const TeamsPage = (props) => {
   const navItems = teams.map((elem, index) => {
     if (activePage === index) {
       return (
-        <Button color="primary" onClick={() => activePageSet(index)}>
+        <Button key={index} color="primary" onClick={() => activePageSet(index)}>
           {index + 1}
         </Button>
       );
