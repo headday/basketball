@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import { getData } from "../../service/service";
 import Circle from "../circle/Circle";
 const TournamentDetails = (props) => {
-  const [detail, setdetail] = useState({});
+  const [detail, setdetail] = useState();
   const [loading, setloading] = useState(true);
-    
+
   const { id } = props.match.params;
 
   const history = useHistory();
 
-  useEffect(() => {
-    fetch(`https://www.balldontlie.io/api/v1/games/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setdetail(data);
-        setloading(false);
-      })
-      .catch((err) => console.log(err));
+  useEffect(async () => {
+    const games = await getData(
+      `https://www.balldontlie.io/api/v1/games/${id}`
+    );
+    console.log(games);
+    setdetail(games);
+    setloading(false);
   }, []);
   return (
     <Container>
@@ -64,10 +64,7 @@ const TournamentDetails = (props) => {
           </div>
         </div>
       </div>
-      <Button
-        color="secondary details_btn"
-        onClick={() => history.goBack()}
-      >
+      <Button color="secondary details_btn" onClick={() => history.goBack()}>
         Go back
       </Button>{" "}
     </Container>
