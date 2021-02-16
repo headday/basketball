@@ -3,30 +3,35 @@ import { Container, Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import { getData } from "../../service/service";
 import Circle from "../circle/Circle";
+import { connect } from "react-redux";
+import { tournamentDetailsUpdate } from "../../actions";
 const TournamentDetails = (props) => {
-  const [detail, setdetail] = useState();
   const [loading, setloading] = useState(true);
+  const { tournamentDetail, tournamentDetailsUpdate } = props;
 
   const { id } = props.match.params;
 
   const history = useHistory();
 
-  useEffect( () => {
-    const getGames = async () =>{
+  useEffect(() => {
+    const getGames = async () => {
       const games = await getData(
         `https://www.balldontlie.io/api/v1/games/${id}`
       );
-      setdetail(games);
+      tournamentDetailsUpdate(games);
       setloading(false);
-    }
+    };
     getGames();
   }, [id]);
   return (
     <Container>
       <div className="card_detail">
         <div className="card_title">
-          <h2>{loading ? <Circle /> : detail.home_team.full_name}</h2> vs
-          <h2>{loading ? <Circle /> : detail.visitor_team.full_name}</h2>
+          <h2>{loading ? <Circle /> : tournamentDetail.home_team.full_name}</h2>{" "}
+          vs
+          <h2>
+            {loading ? <Circle /> : tournamentDetail.visitor_team.full_name}
+          </h2>
         </div>
         <div className="card_game_details">
           <div className="card_game_details_main">
@@ -34,11 +39,12 @@ const TournamentDetails = (props) => {
               <Circle />
             ) : (
               <>
-                <div>Datw {detail.date}</div>
+                <div>Datw {tournamentDetail.date}</div>
                 <div>
-                  Score {detail.home_team_score} : {detail.home_team_score}
+                  Score {tournamentDetail.home_team_score} :{" "}
+                  {tournamentDetail.home_team_score}
                 </div>
-                <div>Status {detail.status}</div>
+                <div>Status {tournamentDetail.status}</div>
               </>
             )}
           </div>
@@ -48,17 +54,20 @@ const TournamentDetails = (props) => {
             ) : (
               <div>
                 <div className="card_game_title">
-                  Home team <span>{detail.home_team.full_name}</span>
+                  Home team <span>{tournamentDetail.home_team.full_name}</span>
                 </div>
                 <div>
-                  Team division <span>{detail.home_team.division}</span>
+                  Team division{" "}
+                  <span>{tournamentDetail.home_team.division}</span>
                 </div>
                 <div>
                   <div className="card_game_title">
-                    Home team <span>{detail.visitor_team.full_name}</span>
+                    Home team{" "}
+                    <span>{tournamentDetail.visitor_team.full_name}</span>
                   </div>
                   <div>
-                    Team division <span>{detail.visitor_team.division}</span>
+                    Team division{" "}
+                    <span>{tournamentDetail.visitor_team.division}</span>
                   </div>
                 </div>
               </div>
@@ -66,11 +75,22 @@ const TournamentDetails = (props) => {
           </div>
         </div>
       </div>
-      <Button color="secondary details_btn" onClick={() => history.push('/tournaments')}>
+      <Button
+        color="secondary details_btn"
+        onClick={() => history.push("/tournaments")}
+      >
         Go back
       </Button>{" "}
     </Container>
   );
 };
+const mapStateToProps = ({ tournamentDetail }) => {
+  return {
+    tournamentDetail,
+  };
+};
+const mapDispatchToProps = {
+  tournamentDetailsUpdate,
+};
 
-export default TournamentDetails;
+export default connect(mapStateToProps, mapDispatchToProps)(TournamentDetails);

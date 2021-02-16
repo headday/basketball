@@ -39,10 +39,10 @@ const countPlayersUpdate = (count) => {
     payload: count,
   };
 };
-const tournamentDetailsUpdate = (id) =>{
+const tournamentDetailsUpdate = (details) =>{
   return {
-    type: "TOURNAMENT_DETAILTS_UPDATE",
-    payload: id,
+    type: "TOURNAMENT_DETAILS_UPDATE",
+    payload: details,
   };
 }
 
