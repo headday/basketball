@@ -16,6 +16,7 @@ import LoginPage from "./components/pages/LoginPage";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import ProfilePage from "./components/pages/Profile";
 import PlayersDetails from "./components/playerDetails/PlayersDetails";
+import TournamentDetails from "./components/tournamentsDetails/TournamentsDetails";
 import { authSucces } from "./actions";
 import logo from "./images/logo.svg";
 import "./App.css";
@@ -66,21 +67,17 @@ function App(props) {
           </Col>
         </Row>
         <Switch>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/teams">
-            <TeamsPage />
-          </Route>
-          <Route exact path="/players">
-            <PlayersPage />
-          </Route>
+          <Route path="/" exact component={Home} />
+          <Route path="/teams" component={TeamsPage} />
+          <Route exact path="/players" component={PlayersPage} />
           <Route path="/players/tracked-players-list">
             <PlayersDetails trackedPlayers={trackedPlayers} />
           </Route>
-          <Route path="/tournaments">
-            <TournamentsPage />
-          </Route>
+          <Route exact path="/tournaments" component={TournamentsPage} />
+          <Route
+            path="/tournaments/:id"
+            component={TournamentDetails}
+          />
           <Route path="/login" component={LoginPage} />
           <PrivateRoute path="/profile" component={ProfilePage} />
         </Switch>

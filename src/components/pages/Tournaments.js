@@ -30,7 +30,7 @@ const TournamentsPage = () => {
           {game.home_team_score} : {game.visitor_team_score}
         </CardText>
         <CardText>Status {game.status}</CardText>
-        <Link to="/tournaments/details">
+        <Link to={`/tournaments/${game.id}`}>
           <Button color="primary" onClick={() => setdetail(game.id)}>
             Show details
           </Button>
@@ -43,12 +43,7 @@ const TournamentsPage = () => {
   }
   return (
     <div className="d-flex flex-wrap">
-      <Route path="/tournaments" exact>
         {gamesList}
-      </Route>
-      <Route path="/tournaments/details">
-        <TournamentsDetails gameId={detail} />
-      </Route>
     </div>
   );
 };

@@ -3,29 +3,15 @@ import { Container, Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import Circle from "../circle/Circle";
 const TournamentDetails = (props) => {
-  const [detail, setdetail] = useState({
-    id: 1,
-    date: "2018-10-16T00:00:00.000Z",
-    home_team_score: 105,
-    visitor_team_score: 87,
-    status: "Final",
-    home_team: {
-      id: 2,
-      division: "Atlantic",
-      full_name: "Boston Celtics",
-    },
-    visitor_team: {
-      id: 23,
-      division: "Atlantic",
-      full_name: "Philadelphia 76ers",
-    },
-  });
+  const [detail, setdetail] = useState({});
   const [loading, setloading] = useState(true);
-  const { gameId } = props;
+    
+  const { id } = props.match.params;
+
   const history = useHistory();
 
   useEffect(() => {
-    fetch(`https://www.balldontlie.io/api/v1/games/${gameId}`)
+    fetch(`https://www.balldontlie.io/api/v1/games/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setdetail(data);
@@ -37,8 +23,8 @@ const TournamentDetails = (props) => {
     <Container>
       <div className="card_detail">
         <div className="card_title">
-          <h2>{loading ? <Circle /> : detail.home_team.full_name}</h2> vs{" "}
-          <h2>{loading ? <Circle /> : detail.visitor_team.full_name}</h2>{" "}
+          <h2>{loading ? <Circle /> : detail.home_team.full_name}</h2> vs
+          <h2>{loading ? <Circle /> : detail.visitor_team.full_name}</h2>
         </div>
         <div className="card_game_details">
           <div className="card_game_details_main">
@@ -80,7 +66,7 @@ const TournamentDetails = (props) => {
       </div>
       <Button
         color="secondary details_btn"
-        onClick={() => history.push("/tournaments")}
+        onClick={() => history.goBack()}
       >
         Go back
       </Button>{" "}
