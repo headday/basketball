@@ -39,6 +39,12 @@ const countPlayersUpdate = (count) => {
     payload: count,
   };
 };
+const tournamentDetailsUpdate = (id) =>{
+  return {
+    type: "TOURNAMENT_DETAILTS_UPDATE",
+    payload: id,
+  };
+}
 
 export {
   teamsLoaded,
@@ -48,4 +54,5 @@ export {
   authSucces,
   trackedPlayerUpdate,
   countPlayersUpdate,
+  tournamentDetailsUpdate
 };

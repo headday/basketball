@@ -9,6 +9,7 @@ const initialState = {
   players: [],
   trackedPlayers: [],
   countPlayers: 0,
+  tournamentDetails:{}
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -47,6 +48,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         countPlayers: action.payload,
       };
+    case "TOURNAMENT_DETAILTS_UPDATE":
+      return{
+        ...state,
+        tournamentDetails: action.payload
+      }
     default:
       return state;
   }
