@@ -11,14 +11,16 @@ const TournamentDetails = (props) => {
 
   const history = useHistory();
 
-  useEffect(async () => {
-    const games = await getData(
-      `https://www.balldontlie.io/api/v1/games/${id}`
-    );
-    console.log(games);
-    setdetail(games);
-    setloading(false);
-  }, []);
+  useEffect( () => {
+    const getGames = async () =>{
+      const games = await getData(
+        `https://www.balldontlie.io/api/v1/games/${id}`
+      );
+      setdetail(games);
+      setloading(false);
+    }
+    getGames();
+  }, [id]);
   return (
     <Container>
       <div className="card_detail">
@@ -64,7 +66,7 @@ const TournamentDetails = (props) => {
           </div>
         </div>
       </div>
-      <Button color="secondary details_btn" onClick={() => history.goBack()}>
+      <Button color="secondary details_btn" onClick={() => history.push('/tournaments')}>
         Go back
       </Button>{" "}
     </Container>
