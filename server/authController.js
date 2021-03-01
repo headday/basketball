@@ -1,6 +1,15 @@
 const User = require('./models/User')
 const bcrypt = require('bcrypt');
-const {validationResult} = require('express-validator')
+const jwt = require('jsonwebtoken');
+const {validationResult} = require('express-validator');
+const {secret} = require('./config')
+
+const generateAccesToken = (id) =>{
+    const payload = {
+        id
+    }
+    return jwt.sign(payload, secret, {expiresIn: "24h"})
+}
 class authController{
     async registration(req,res){
         try {
@@ -25,7 +34,17 @@ class authController{
     }
     async login(req,res){
         try {
-            
+            const {username,password} = req.body
+            const user = await User.findOne({username})
+            if(!user){
+                return res.status(400).json({message:"Not find user"})
+            }
+            const validPassword = bcrypt.compareSync(password, user.password);
+            if(!validPassword){
+                return  res.status(400).json({message:"invalid password"})
+            }
+            const token = generateAccesToken(user._id)
+            return res.json({token})
         } catch (e) {
             console.log(e)
             res.status(400).json({message:"Login error"})
