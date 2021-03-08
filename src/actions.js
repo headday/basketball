@@ -21,10 +21,10 @@ const playersLoaded = (players) => {
     payload: players,
   };
 };
-const authSucces = (user) => {
+const authSucces = (token) => {
   return {
     type: "LOGIN",
-    payload: user,
+    payload: token,
   };
 };
 const trackedPlayerUpdate = (userID) => {

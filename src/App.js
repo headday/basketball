@@ -78,7 +78,7 @@ function App(props) {
             path="/tournaments/:id"
             component={TournamentDetails}
           />
-          <Route path="/login" component={LoginPage} />
+          <Route path="/auth" component={LoginPage} />
           <PrivateRoute path="/profile" component={ProfilePage} />
         </Switch>
       </Container>

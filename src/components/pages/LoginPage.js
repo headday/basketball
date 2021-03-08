@@ -3,36 +3,47 @@ import {  Input, Button } from "reactstrap";
 import { connect } from "react-redux";
 import {  Redirect } from "react-router-dom";
 import { authSucces } from "../../actions";
+import { postData } from '../../service/service'
 import "../../App.css";
 const LoginPage = (props) => {
-  const [login, setlogin] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, seterror] = useState(false);
   const { authSucces } = props; //action
   const { auth } = props; // state
   const handleLoginChange = (event) => {
-    setlogin(event.target.value);
+    setUsername(event.target.value);
   };
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (login === "test" && password === "123123") {
-      authSucces({ login: login, password: password });
-      localStorage.auth = true;
-    } else {
-      seterror((prev) => !prev);
-      setlogin("");
-      setPassword("");
-      setTimeout(() => {
-        seterror(false);
-      }, 5000);
+    let data = {
+      username,
+      password
     }
+    postData('http://localhost:4000/auth/login',data)
+    .then((res) =>{
+      if(res.token){
+        authSucces(res.token)
+        localStorage.token = res.token; 
+      }else{
+        seterror(true);
+        setTimeout(() => {
+          seterror(false);
+        }, 5000);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    }
+    );
+    
   };
-  if (auth) {
+/*   if (auth) {
     return <Redirect to="/" />;
-  }
+  } */
   return (
     <div className="login_section">
       <h3 className="login_label">Sign In</h3>
@@ -45,7 +56,7 @@ const LoginPage = (props) => {
                 type="text"
                 name="login"
                 placeholder="Your login"
-                value={login}
+                value={username}
                 onChange={handleLoginChange}
               />
             </label>
@@ -65,7 +76,10 @@ const LoginPage = (props) => {
           <div className="login_block">
             <div>{error === true ? "Invalid login or password" : ""}</div>
           </div>
-          <Button className="login_btn">SingIn</Button>
+          <div className="login_btns">
+            <Button className="login_btn">Registration</Button>
+            <Button className="login_btn">SingIn</Button>
+          </div>
         </form>
       </div>
     </div>

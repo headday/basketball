@@ -1,7 +1,6 @@
 const initialState = {
   auth: false,
-  login: "",
-  password: "",
+  token:"",
   teams: [[]],
   activePage: 0,
   counter: 0,
@@ -36,6 +35,7 @@ const reducer = (state = initialState, action) => {
     case "LOGIN":
       return {
         ...state,
+        token: action.payload,
         auth: true,
       };
     case "TRACKED_PLAYERS_UPDATE":
